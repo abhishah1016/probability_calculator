@@ -82,6 +82,19 @@
                                 $('#total_joint_mp_flu_2').text(result['total_joint_mp_flu']);
 
                                 $('#p_flu_con_s_1').text(result['p_flu_con_s']);
+
+                                // add two cells at the end to get 1.
+                                var t_11 = Number(result['p_cold_con_s']);
+                                var t_12 = Number(result['p_flu_con_s']);
+                                var r1 = t_11 + t_12;
+
+                                $('#total_t1').text(r1);
+
+                                var t_21 = Number(result['p_cold_con_ns']);
+                                var t_22 = Number(result['p_flu_con_ns']);
+                                var r2 = t_21 + t_22;
+
+                                $('#total_t2').text(r2);
                             }
                         }
                     });
@@ -111,12 +124,11 @@
             padding: 5px;
         }
 
-        .column_30 {
-            flex: 30%;
-            padding: 5px;
+        .column_15 {
+            flex: 15%;
         }
 
-        .column_70 {
+        .column_85 {
             flex: 70%;
             padding: 5px;
         }
@@ -124,8 +136,9 @@
         table {
             border-collapse: collapse;
             border-spacing: 0;
-            width: 100%;
-            border: 1px solid #ddd;
+            width: 90% !important;
+            height: 90% !important;
+            border: 1px solid #964B00!important;
         }
 
         th, td {
@@ -139,7 +152,7 @@
 
 
         table, th, td {
-            border: 1px solid;
+            border: 1px solid #964B00 !important;
         }
 
         table {
@@ -150,7 +163,7 @@
         th, td {
             padding: 8px;
             text-align: left;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #964B00 !important;
         }
 
         th {
@@ -208,7 +221,7 @@
 <body>
 
     <div class="row">
-        <div class="column_30">
+        <div class="column_15">
             <table>
                 <tr>
                     <th colspan="5" style="text-align:center">Contigency Table(Counts of Event)</th>
@@ -247,7 +260,7 @@
             </table>
         </div>
 
-        <div class="column_30">
+        <div class="column_15">
             <table>
                 <tr>
                     <th colspan="5" style="text-align:center">Joint And Marginal Probabilities</th>
@@ -292,7 +305,7 @@
     <br />
 
     <div class="row">
-        <div class="column_30">
+        <div class="column_15">
             <table>
                 <tr>
                     <td rowspan="2"></td>
@@ -328,12 +341,13 @@
             </table>
         </div>
 
-        <div class="column_70">
+        <div class="column_85">
             <table>
                 <tr>
                     <th colspan="4" style="text-align:center">Likelihood</th>
                     <th colspan="4" style="text-align:center">Posterior</th>
                     <th colspan="3" style="text-align:center">(Likelihood X Prior) / Total Evidence</th>
+                    <th colspan="1" style="text-align:center;border:none;"></th>
                 </tr>
                 <tr>
                     <td style="text-align:center" rowspan="2">P(S | Cold)</td>
@@ -349,8 +363,7 @@
                     <td style="text-align:center" class="highlight-yellow">P(S | Cold) * P(Cold)</td>
                     <td style="text-align:center" class="highlight-yellow" id="cold_joint_mp_s_4"></td>
                     <td style="text-align:center" rowspan="2" id="p_cold_con_s_1"></td>
-
-
+                    <td style="text-align:center;width:75px;" rowspan="4" id="total_t1"></td>
 
                 </tr>
                 <tr>
@@ -362,15 +375,14 @@
 
                     <td style="text-align:center" class="highlight-lightblue">P(S)</td>
                     <td style="text-align:center" class="highlight-lightblue" id="total_joint_mp_s_2"></td>
-
                 </tr>
 
 
                 <!-- New line -->
                 <tr>
                     <td style="text-align:center" rowspan="2">P(NS | Cold)</td>
-                    <td style="text-align:center" class="highlight-lightblue">P(NS,Cold)</td>
-                    <td style="text-align:center" class="highlight-lightblue" id="cold_joint_mp_ns_1"></td>
+                    <td style="text-align:center" class="highlight-limegreen">P(NS,Cold)</td>
+                    <td style="text-align:center" class="highlight-limegreen" id="cold_joint_mp_ns_1"></td>
                     <td style="text-align:center" rowspan="2" id="P_ns_con_cold"></td>
 
                     <td style="text-align:center" rowspan="2">P(Cold | S)</td>
@@ -380,20 +392,17 @@
 
                     <td style="text-align:center" class="highlight-lightgreen">P(NS | Cold) * P(Cold)</td>
                     <td style="text-align:center" class="highlight-lightgreen" id="cold_joint_mp_ns_3"></td>
-                    <td style="text-align:center" rowspan="2" id="p_cold_con_ns_1"></td>
-
-
-
+                    <td style="text-align:center" rowspan="2" id="p_cold_con_ns_1"></td> 
                 </tr>
                 <tr>
                     <td style="text-align:center" class="highlight-lightgreen">P(Cold)</td>
                     <td style="text-align:center" class="highlight-lightgreen" id="total_joint_mp_cold_2"></td>
 
-                    <td style="text-align:center" class="highlight-lightblue">P(NS)</td>
-                    <td style="text-align:center" class="highlight-lightblue" id="total_joint_mp_ns_1"></td>
+                    <td style="text-align:center" class="highlight-purple">P(NS)</td>
+                    <td style="text-align:center" class="highlight-purple" id="total_joint_mp_ns_1"></td>
 
-                    <td style="text-align:center" class="highlight-lightblue">P(NS)</td>
-                    <td style="text-align:center" class="highlight-lightblue" id="total_joint_mp_ns_2"></td>
+                    <td style="text-align:center" class="highlight-purple">P(NS)</td>
+                    <td style="text-align:center" class="highlight-purple" id="total_joint_mp_ns_2"></td>
 
                 </tr>
 
@@ -401,23 +410,23 @@
 
                 <tr>
                     <td style="text-align:center" rowspan="2">P(S | Flu)</td>
-                    <td style="text-align:center" class="highlight-yellow">P(S, Flu)</td>
-                    <td style="text-align:center" class="highlight-yellow" id="flu_joint_mp_s_1"></td>
+                    <td style="text-align:center" class="highlight-lightblue">P(S, Flu)</td>
+                    <td style="text-align:center" class="highlight-lightblue" id="flu_joint_mp_s_1"></td>
                     <td style="text-align:center" rowspan="2" id="p_s_con_flu"></td>
 
                     <td style="text-align:center" rowspan="2">P(Flu | S)</td>
-                    <td style="text-align:center" class="highlight-yellow">P(S,Flu)</td>
-                    <td style="text-align:center" class="highlight-yellow" id="flu_joint_mp_s_2"></td>
+                    <td style="text-align:center" class="highlight-blue">P(S,Flu)</td>
+                    <td style="text-align:center" class="highlight-blue" id="flu_joint_mp_s_2"></td>
                     <td style="text-align:center" rowspan="2" id="p_flu_con_s"></td>
 
-                    <td style="text-align:center" class="highlight-yellow">P(S | Flu) * P(Flu)</td>
-                    <td style="text-align:center" class="highlight-yellow" id="flu_joint_mp_s_3"></td>
+                    <td style="text-align:center" class="highlight-blue">P(S | Flu) * P(Flu)</td>
+                    <td style="text-align:center" class="highlight-blue" id="flu_joint_mp_s_3"></td>
                     <td style="text-align:center" rowspan="2" id="p_flu_con_s_1"></td>
-
+                    <td style="text-align: center; width: 75px;" rowspan="4" id="total_t2"></td>
                 </tr>
                 <tr>
-                    <td style="text-align:center" class="highlight-lightgreen">P(Flu)</td>
-                    <td style="text-align:center" class="highlight-lightgreen" id="total_joint_mp_flu_1"></td>
+                    <td style="text-align:center" class="hightlight-lightpurple">P(Flu)</td>
+                    <td style="text-align:center" class="hightlight-lightpurple" id="total_joint_mp_flu_1"></td>
 
                     <td style="text-align:center" class="highlight-lightblue">P(S)</td>
                     <td style="text-align:center" class="highlight-lightblue" id="total_joint_mp_s_4"></td>
@@ -447,14 +456,14 @@
 
                 </tr>
                 <tr>
-                    <td style="text-align:center" class="highlight-pink">P(Flu)</td>
-                    <td style="text-align:center" class="highlight-pink" id="total_joint_mp_flu_2"></td>
+                    <td style="text-align:center" class="hightlight-lightpurple">P(Flu)</td>
+                    <td style="text-align:center" class="hightlight-lightpurple" id="total_joint_mp_flu_2"></td>
 
-                    <td style="text-align:center" class="highlight-pink">P(NS)</td>
-                    <td style="text-align:center" class="highlight-pink" id="total_joint_mp_ns_3"></td>
+                    <td style="text-align:center" class="highlight-purple">P(NS)</td>
+                    <td style="text-align:center" class="highlight-purple" id="total_joint_mp_ns_3"></td>
 
-                    <td style="text-align:center" class="highlight-pink">P(NS)</td>
-                    <td style="text-align:center" class="highlight-pink" id="total_joint_mp_ns_4"></td>
+                    <td style="text-align:center" class="highlight-purple">P(NS)</td>
+                    <td style="text-align:center" class="highlight-purple" id="total_joint_mp_ns_4"></td>
 
                 </tr>
 
